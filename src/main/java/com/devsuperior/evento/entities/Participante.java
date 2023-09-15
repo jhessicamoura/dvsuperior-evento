@@ -2,6 +2,11 @@ package com.devsuperior.evento.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table (name = "tb_participante")
 public class Participante {
@@ -11,6 +16,9 @@ public class Participante {
     private Integer id;
     private String name;
     private String email;
+
+    @ManyToMany(mappedBy = "participantes")
+    private Set<Atividade> products = new HashSet<>();
 
     public Participante() {
     }
@@ -43,6 +51,10 @@ public class Participante {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Atividade> getProducts() {
+        return products;
     }
 
     @Override
